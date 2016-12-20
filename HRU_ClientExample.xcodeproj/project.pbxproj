@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9BCD32821E08F3DD00EDAC3E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCD32811E08F3DD00EDAC3E /* SwiftyJSON.framework */; };
 		9BDA26191E08DEAD0026644C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDA26181E08DEAD0026644C /* AppDelegate.swift */; };
 		9BDA261B1E08DEAD0026644C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDA261A1E08DEAD0026644C /* ViewController.swift */; };
 		9BDA261E1E08DEAD0026644C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BDA261C1E08DEAD0026644C /* Main.storyboard */; };
 		9BDA26201E08DEAD0026644C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BDA261F1E08DEAD0026644C /* Assets.xcassets */; };
 		9BDA26231E08DEAD0026644C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BDA26211E08DEAD0026644C /* LaunchScreen.storyboard */; };
+		9BDA262C1E08E8140026644C /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BDA262B1E08E8140026644C /* Alamofire.framework */; };
+		9BDA262F1E08E9A60026644C /* HRUMoodsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDA262E1E08E9A60026644C /* HRUMoodsTableViewController.swift */; };
+		9BDA26321E08EAD80026644C /* HRUMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDA26311E08EAD80026644C /* HRUMood.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9BCD32811E08F3DD00EDAC3E /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		9BDA26151E08DEAD0026644C /* HRU_ClientExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRU_ClientExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BDA26181E08DEAD0026644C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BDA261A1E08DEAD0026644C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,9 @@
 		9BDA261F1E08DEAD0026644C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BDA26221E08DEAD0026644C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BDA26241E08DEAD0026644C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BDA262B1E08E8140026644C /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		9BDA262E1E08E9A60026644C /* HRUMoodsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HRUMoodsTableViewController.swift; sourceTree = "<group>"; };
+		9BDA26311E08EAD80026644C /* HRUMood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HRUMood.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BDA262C1E08E8140026644C /* Alamofire.framework in Frameworks */,
+				9BCD32821E08F3DD00EDAC3E /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +50,7 @@
 			children = (
 				9BDA26171E08DEAD0026644C /* HRU_ClientExample */,
 				9BDA26161E08DEAD0026644C /* Products */,
+				9BDA262A1E08E8140026644C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +66,40 @@
 			isa = PBXGroup;
 			children = (
 				9BDA26181E08DEAD0026644C /* AppDelegate.swift */,
-				9BDA261A1E08DEAD0026644C /* ViewController.swift */,
+				9BDA26301E08EAB80026644C /* Controller */,
+				9BDA26331E08EADD0026644C /* Model */,
 				9BDA261C1E08DEAD0026644C /* Main.storyboard */,
 				9BDA261F1E08DEAD0026644C /* Assets.xcassets */,
 				9BDA26211E08DEAD0026644C /* LaunchScreen.storyboard */,
 				9BDA26241E08DEAD0026644C /* Info.plist */,
 			);
 			path = HRU_ClientExample;
+			sourceTree = "<group>";
+		};
+		9BDA262A1E08E8140026644C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9BCD32811E08F3DD00EDAC3E /* SwiftyJSON.framework */,
+				9BDA262B1E08E8140026644C /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9BDA26301E08EAB80026644C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9BDA261A1E08DEAD0026644C /* ViewController.swift */,
+				9BDA262E1E08E9A60026644C /* HRUMoodsTableViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		9BDA26331E08EADD0026644C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9BDA26311E08EAD80026644C /* HRUMood.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +112,7 @@
 				9BDA26111E08DEAD0026644C /* Sources */,
 				9BDA26121E08DEAD0026644C /* Frameworks */,
 				9BDA26131E08DEAD0026644C /* Resources */,
+				9BDA262D1E08E89D0026644C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -132,12 +171,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9BDA262D1E08E89D0026644C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9BDA26111E08DEAD0026644C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BDA262F1E08E9A60026644C /* HRUMoodsTableViewController.swift in Sources */,
 				9BDA261B1E08DEAD0026644C /* ViewController.swift in Sources */,
+				9BDA26321E08EAD80026644C /* HRUMood.swift in Sources */,
 				9BDA26191E08DEAD0026644C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,7 +319,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7JP8NP67JM;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = HRU_ClientExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SwiftWithMe.HRU-ClientExample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -273,7 +337,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7JP8NP67JM;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = HRU_ClientExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SwiftWithMe.HRU-ClientExample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -300,6 +369,7 @@
 				9BDA26291E08DEAD0026644C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
