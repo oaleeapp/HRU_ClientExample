@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
-
 
 class ViewController: UIViewController {
 
@@ -50,7 +47,13 @@ class ViewController: UIViewController {
 
             if let name = self.nameTextfield?.text, let emotion = self.emotionTextfield?.text {
                 let mood = HRUMood(name: name, emotion: emotion)
-                self.createMood(mood)
+                HRU_API.create(.moods, mood: mood) { isSuccess in
+                    if isSuccess {
+                        self.moodsListVC?.reloadData()
+                    } else {
+                        print("fail to create new mood")
+                    }
+                }
             }
 
         }))
@@ -62,43 +65,6 @@ class ViewController: UIViewController {
 
     }
 
-    func createMood(_ mood: HRUMood) {
 
-
-        let headers: HTTPHeaders = [
-
-            "Content-type": "application/json",
-            "Accept": "application/json",
-//            "Authorization": "e1bc6a94-3b9c-486c-9ffa-d96e8bb21645"
-        ]
-        let parameters: Parameters = [
-            "name": mood.name,
-            "emotion": mood.emotion
-            ]
-
-        Alamofire.request("https://floating-bastion-69914.herokuapp.com/moods", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-
-
-            print(response.request ?? "No request")  // original URL request
-            print(response.response ?? "No response") // HTTP URL response
-            print(response.data ?? "No data")     // server data
-            print(response.result)   // result of response serialization
-
-            switch response.result {
-            case .success(let data):
-                let json = JSON(data)
-                print(json)
-
-                // reload tableView
-                self.moodsListVC?.reloadData()
-
-            case .failure(let error):
-                print("Request failed with error: \(error)")
-                
-                
-            }
-
-        }
-    }
 }
 

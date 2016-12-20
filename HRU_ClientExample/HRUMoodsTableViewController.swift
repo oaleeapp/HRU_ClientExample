@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
 protocol MoodsListDisplayable {
     func reloadData()
@@ -16,15 +14,11 @@ protocol MoodsListDisplayable {
 
 class HRUMoodsTableViewController: UITableViewController, MoodsListDisplayable {
 
-
-    var jsonArray: Array<[String:String]>?
-    var moodArray: Array<HRUMood> = []
-
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Get the data from server
         fetchMoods()
-
-
     }
 
 
@@ -37,14 +31,14 @@ class HRUMoodsTableViewController: UITableViewController, MoodsListDisplayable {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return moodArray.count
+        return HRU_API.moodArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
     
-        let mood = moodArray[indexPath.row]
+        let mood = HRU_API.moodArray[indexPath.row]
         cell.textLabel?.text = mood.emotion
         cell.detailTextLabel?.text = mood.name
 
@@ -52,39 +46,17 @@ class HRUMoodsTableViewController: UITableViewController, MoodsListDisplayable {
     }
 
     func fetchMoods() {
-        Alamofire.request("https://floating-bastion-69914.herokuapp.com/moods", method:.get).responseJSON { response in
-            print(response.request ?? "No request")  // original URL request
-            print(response.response ?? "No response") // HTTP URL response
-            print(response.data ?? "No data")     // server data
-            print(response.result)   // result of response serialization
+        HRU_API.get(.moods) { isSuccess in
 
+            switch isSuccess {
+            case true:
+                self.tableView.reloadData()
+                self.tableView.scrollToRow(at: HRU_API.lastIndexPath(), at: .bottom, animated: true)
 
-            switch response.result {
-            case .success(let data):
-                let json = JSON(data)
-                var moodArray:[HRUMood] = []
-                for moodJson in json.array! {
-                    let name = moodJson["name"].stringValue
-                    let emotion = moodJson["emotion"].stringValue
-                    let mood = HRUMood(name: name, emotion: emotion)
-
-                    moodArray.append(mood)
-
-                }
-                self.moodArray = moodArray
-                if self.moodArray.count != 0 {
-                    self.tableView.reloadData()
-                    let indexPath = IndexPath.init(row: self.moodArray.endIndex - 1, section: 0)
-                    self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.bottom, animated: true)
-                }
-
-            case .failure(let error):
-                print("Request failed with error: \(error)")
-                
-                
+            case false:
+                print("fail to load moods")
             }
         }
-
     }
 
     func reloadData() {

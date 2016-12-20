@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B971ECE1E09456B0080DDC6 /* HRU_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B971ECD1E09456B0080DDC6 /* HRU_API.swift */; };
 		9BCD32821E08F3DD00EDAC3E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCD32811E08F3DD00EDAC3E /* SwiftyJSON.framework */; };
 		9BDA26191E08DEAD0026644C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDA26181E08DEAD0026644C /* AppDelegate.swift */; };
 		9BDA261B1E08DEAD0026644C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDA261A1E08DEAD0026644C /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B971ECD1E09456B0080DDC6 /* HRU_API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HRU_API.swift; sourceTree = "<group>"; };
 		9BCD32811E08F3DD00EDAC3E /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		9BDA26151E08DEAD0026644C /* HRU_ClientExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRU_ClientExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BDA26181E08DEAD0026644C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B971EC81E0935F90080DDC6 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				9B971ECD1E09456B0080DDC6 /* HRU_API.swift */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
 		9BDA260C1E08DEAD0026644C = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				9BDA26181E08DEAD0026644C /* AppDelegate.swift */,
+				9B971EC81E0935F90080DDC6 /* Support */,
 				9BDA26301E08EAB80026644C /* Controller */,
 				9BDA26331E08EADD0026644C /* Model */,
 				9BDA261C1E08DEAD0026644C /* Main.storyboard */,
@@ -196,6 +207,7 @@
 			files = (
 				9BDA262F1E08E9A60026644C /* HRUMoodsTableViewController.swift in Sources */,
 				9BDA261B1E08DEAD0026644C /* ViewController.swift in Sources */,
+				9B971ECE1E09456B0080DDC6 /* HRU_API.swift in Sources */,
 				9BDA26321E08EAD80026644C /* HRUMood.swift in Sources */,
 				9BDA26191E08DEAD0026644C /* AppDelegate.swift in Sources */,
 			);
