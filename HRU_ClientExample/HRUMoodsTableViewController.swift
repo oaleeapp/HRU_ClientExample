@@ -8,11 +8,10 @@
 
 import UIKit
 
-protocol MoodsListDisplayable {
-    func reloadData()
-}
 
-class HRUMoodsTableViewController: UITableViewController, MoodsListDisplayable {
+class HRUMoodsTableViewController: UITableViewController {
+
+    var delegate: LoadingHelper?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +20,38 @@ class HRUMoodsTableViewController: UITableViewController, MoodsListDisplayable {
         fetchMoods()
     }
 
+    func fetchMoods() {
+
+
+        self.tableView.alpha = 0.0
+        delegate?.loading(true)
+        HRU_API.get(.moods) { isSuccess in
+
+            self.delegate?.loading(false)
+            switch isSuccess {
+            case true:
+                self.tableView.reloadData()
+
+                if self.tableView.scrollsToTop {
+                    UIView.animate(withDuration: 0.2){
+                        self.tableView.alpha = 1.0
+                        self.tableView.scrollToRow(at: HRU_API.lastIndexPath(), at: .bottom, animated: false)
+                    }
+                } else {
+                    self.tableView.alpha = 1.0
+                    self.tableView.scrollToRow(at: HRU_API.lastIndexPath(), at: .bottom, animated: false)
+                }
+
+            case false:
+                print("fail to load moods")
+                self.tableView.alpha = 1.0
+            }
+        }
+    }
+
+}
+
+extension HRUMoodsTableViewController {
 
     // MARK: - Table view data source
 
@@ -36,32 +67,42 @@ class HRUMoodsTableViewController: UITableViewController, MoodsListDisplayable {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-    
-        let mood = HRU_API.moodArray[indexPath.row]
-        cell.textLabel?.text = mood.emotion
-        cell.detailTextLabel?.text = mood.name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MoodTableViewCell else {
+            fatalError("Wrong setting in storyboard for mood cell")
+        }
 
+        let mood = HRU_API.moodArray[indexPath.row]
+        cell.nameLabel?.text = mood.name
+        cell.emotionLabel?.text = mood.emotion
+        
         return cell
     }
 
-    func fetchMoods() {
-        HRU_API.get(.moods) { isSuccess in
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 
-            switch isSuccess {
-            case true:
-                self.tableView.reloadData()
-                self.tableView.scrollToRow(at: HRU_API.lastIndexPath(), at: .bottom, animated: true)
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        print("triggered!")
 
-            case false:
-                print("fail to load moods")
+        let delete = UITableViewRowAction(style: .default, title: "Delete") { action, index in
+            print("delete button tapped")
+            HRU_API.delete(.moods, mood: HRU_API.moodArray[indexPath.row]){ isSuccess in
+                if isSuccess {
+                    print("mood deleted")
+                    HRU_API.moodArray.remove(at: indexPath.row)
+                    self.tableView.reloadData()
+                } else {
+                    print("fail to delete mood")
+                }
             }
         }
+        delete.backgroundColor = UIColor.red
+        
+        return [delete]
     }
 
-    func reloadData() {
-        fetchMoods()
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
     }
-
-
 }

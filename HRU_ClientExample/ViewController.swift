@@ -8,11 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+protocol LoadingHelper {
+    func loading(_ isLoading: Bool)
+}
+
+class ViewController: UIViewController, LoadingHelper {
 
     var nameTextfield: UITextField?
     var emotionTextfield: UITextField?
-    var moodsListVC: MoodsListDisplayable?
+    var moodsListVC: HRUMoodsTableViewController?
+    var loadingVC: EmojiLodingTableViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +30,13 @@ class ViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? MoodsListDisplayable {
+        if let vc = segue.destination as? HRUMoodsTableViewController {
             moodsListVC = vc
+            moodsListVC?.delegate = self
+        }
+
+        if let loadingVC = segue.destination as? EmojiLodingTableViewController {
+            self.loadingVC = loadingVC
         }
     }
 
@@ -49,7 +59,7 @@ class ViewController: UIViewController {
                 let mood = HRUMood(name: name, emotion: emotion)
                 HRU_API.create(.moods, mood: mood) { isSuccess in
                     if isSuccess {
-                        self.moodsListVC?.reloadData()
+                        self.moodsListVC?.fetchMoods()
                     } else {
                         print("fail to create new mood")
                     }
@@ -63,6 +73,10 @@ class ViewController: UIViewController {
 
         self.present(alert, animated: true, completion: nil)
 
+    }
+
+    func loading(_ isLoading: Bool) {
+        loadingVC?.loading(isLoading)
     }
 
 

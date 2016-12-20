@@ -32,9 +32,10 @@ class HRU_API: NSObject {
                 let json = JSON(data)
                 var moodArray:[HRUMood] = []
                 for moodJson in json.array! {
+                    let id = moodJson["id"].int
                     let name = moodJson["name"].stringValue
                     let emotion = moodJson["emotion"].stringValue
-                    let mood = HRUMood(name: name, emotion: emotion)
+                    let mood = HRUMood(name: name, emotion: emotion, id: id)
 
                     moodArray.append(mood)
 
@@ -82,10 +83,37 @@ class HRU_API: NSObject {
         }
     }
 
+    static func delete(_ routePath: RoutePath, mood: HRUMood, complete: @escaping CompletionHandler) {
+        guard let id = mood.id else {
+            complete(false)
+            return
+        }
+        
+        let deleteURL = routePath.urlString().appending("/\(id)")
+
+        Alamofire.request(deleteURL, method: .delete).responseJSON { response in
+
+            switch response.result {
+            case .success(let data):
+                let json = JSON(data)
+                print(json)
+
+                // reload tableView
+                complete(true)
+
+            case .failure(let error):
+                print("Request failed with error: \(error)")
+                complete(false)
+                
+            }
+            
+        }
+    }
+
 }
 
 extension HRU_API {
-    
+
     static func lastIndexPath() -> IndexPath {
 
         if HRU_API.moodArray.count > 0 {

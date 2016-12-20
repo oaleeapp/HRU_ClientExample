@@ -10,11 +10,14 @@ import UIKit
 
 class HRUMood: NSObject {
 
+    var id: Int?
+
     var name: String
     var emotion: String
 
-    init(name: String, emotion: String) {
+    init(name: String, emotion: String, id: Int? = nil) {
         self.name = name
         self.emotion = emotion
+        self.id = id
     }
 }
