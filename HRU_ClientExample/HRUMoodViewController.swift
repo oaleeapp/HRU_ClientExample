@@ -51,7 +51,18 @@ class HRUMoodViewController: UIViewController, UIGestureRecognizerDelegate {
 
     func shareIt(_ sender: UILongPressGestureRecognizer) {
 
-        let shareVC = UIActivityViewController(activityItems: [UIImage(view: self.cardView)], applicationActivities: nil)
+        guard let id = mood?.id else {
+            print("have no id")
+            //need alert
+            return
+        }
+        let red = Int((mood?.color.color().components.red)! * 255.0)
+        let green = Int((mood?.color.color().components.green)! * 255.0)
+        let blue = Int((mood?.color.color().components.blue)! * 255.0)
+
+        let moodURL = "https://floating-bastion-69914.herokuapp.com/HowAreYou/mood?id=\(id)&r=\(red.description)&g=\(green.description)&b=\(blue.description)"
+
+        let shareVC = UIActivityViewController(activityItems: [moodURL, UIImage(view: self.cardView)], applicationActivities: nil)
 
 
         present(shareVC, animated: true, completion: nil)
@@ -68,5 +79,15 @@ extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         self.init(cgImage: (image?.cgImage)!)
+    }
+}
+
+extension UIColor {
+    var coreImageColor: CIColor {
+        return CIColor(color: self)
+    }
+    var components: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        let color = coreImageColor
+        return (color.red, color.green, color.blue, color.alpha)
     }
 }

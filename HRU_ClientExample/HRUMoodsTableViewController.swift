@@ -125,31 +125,6 @@ extension HRUMoodsTableViewController {
     }
 }
 
-extension HRUMoodsTableViewController : UIPopoverPresentationControllerDelegate {
-    
-    func prepareForPopoverPresentation(_ pop: UIPopoverPresentationController) {
-    }
-    
-    func popoverPresentationControllerDidDismissPopover(_ pop: UIPopoverPresentationController) {
-
-    }
-    
-    func popoverPresentationController(_ popoverPresentationController: UIPopoverPresentationController, willRepositionPopoverTo rect: UnsafeMutablePointer<CGRect>, in view: AutoreleasingUnsafeMutablePointer<UIView>) {
-        // just playing (also, note how to talk thru pointer parameter in Swift)
-
-
-    }
-    
-    // uncomment to prevent tap outside present-in-popover from dismissing presented controller
-    
-    func popoverPresentationControllerShouldDismissPopover(
-        _ pop: UIPopoverPresentationController) -> Bool {
-            let ok = pop.presentedViewController.presentedViewController == nil
-            return ok
-    }
-
-
-}
 
 
 
