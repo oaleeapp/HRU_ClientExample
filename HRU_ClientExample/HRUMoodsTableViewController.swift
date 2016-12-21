@@ -74,9 +74,12 @@ extension HRUMoodsTableViewController {
         let mood = HRU_API.moodArray[indexPath.row]
         cell.nameLabel?.text = mood.name
         cell.emotionLabel?.text = mood.emotion
-        
+        let randomColor = MoodColor.random()
+        mood.color = randomColor
+        cell.backView.backgroundColor = randomColor.color()
         return cell
     }
+
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -104,5 +107,56 @@ extension HRUMoodsTableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        let row = indexPath.row
+        let mood = HRU_API.moodArray[row]
+        let moodVC = HRUMoodViewController(nibName: "HRUMoodViewController", bundle: nil)
+        moodVC.mood = mood
+
+        if let cell = tableView.cellForRow(at: indexPath) as? MoodTableViewCell {
+            moodVC.color = cell.backView.backgroundColor!
+        } else {
+            print("wrong cell type")
+        }
+
+        present(moodVC, animated: true){
+            print("completed")
+        }
+
     }
 }
+
+extension HRUMoodsTableViewController : UIPopoverPresentationControllerDelegate {
+    
+    func prepareForPopoverPresentation(_ pop: UIPopoverPresentationController) {
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(_ pop: UIPopoverPresentationController) {
+
+    }
+    
+    func popoverPresentationController(_ popoverPresentationController: UIPopoverPresentationController, willRepositionPopoverTo rect: UnsafeMutablePointer<CGRect>, in view: AutoreleasingUnsafeMutablePointer<UIView>) {
+        // just playing (also, note how to talk thru pointer parameter in Swift)
+
+
+    }
+    
+    // uncomment to prevent tap outside present-in-popover from dismissing presented controller
+    
+    func popoverPresentationControllerShouldDismissPopover(
+        _ pop: UIPopoverPresentationController) -> Bool {
+            let ok = pop.presentedViewController.presentedViewController == nil
+            return ok
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+

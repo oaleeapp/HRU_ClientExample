@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B8B23F61E0AAD1B0044941B /* HRUMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8B23F41E0AAD1B0044941B /* HRUMoodViewController.swift */; };
+		9B8B23F71E0AAD1B0044941B /* HRUMoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8B23F51E0AAD1B0044941B /* HRUMoodViewController.xib */; };
 		9B971ECE1E09456B0080DDC6 /* HRU_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B971ECD1E09456B0080DDC6 /* HRU_API.swift */; };
 		9B971ED11E095C710080DDC6 /* MoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B971ED01E095C710080DDC6 /* MoodTableViewCell.swift */; };
 		9B971ED61E096F9F0080DDC6 /* EmojiLodingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B971ED41E096F9F0080DDC6 /* EmojiLodingTableViewController.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B8B23F41E0AAD1B0044941B /* HRUMoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HRUMoodViewController.swift; sourceTree = "<group>"; };
+		9B8B23F51E0AAD1B0044941B /* HRUMoodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HRUMoodViewController.xib; sourceTree = "<group>"; };
 		9B971ECD1E09456B0080DDC6 /* HRU_API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HRU_API.swift; sourceTree = "<group>"; };
 		9B971ED01E095C710080DDC6 /* MoodTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodTableViewCell.swift; sourceTree = "<group>"; };
 		9B971ED41E096F9F0080DDC6 /* EmojiLodingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiLodingTableViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 			children = (
 				9B971ED01E095C710080DDC6 /* MoodTableViewCell.swift */,
 				9B971ED81E097E390080DDC6 /* EmojiLoadingTableViewCell.swift */,
+				9B8B23F51E0AAD1B0044941B /* HRUMoodViewController.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 				9BDA261A1E08DEAD0026644C /* ViewController.swift */,
 				9BDA262E1E08E9A60026644C /* HRUMoodsTableViewController.swift */,
 				9B971ED41E096F9F0080DDC6 /* EmojiLodingTableViewController.swift */,
+				9B8B23F41E0AAD1B0044941B /* HRUMoodViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -194,6 +200,7 @@
 				9BDA26231E08DEAD0026644C /* LaunchScreen.storyboard in Resources */,
 				9BDA26201E08DEAD0026644C /* Assets.xcassets in Resources */,
 				9BDA261E1E08DEAD0026644C /* Main.storyboard in Resources */,
+				9B8B23F71E0AAD1B0044941B /* HRUMoodViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +236,7 @@
 				9BDA26321E08EAD80026644C /* HRUMood.swift in Sources */,
 				9B971ED61E096F9F0080DDC6 /* EmojiLodingTableViewController.swift in Sources */,
 				9BDA26191E08DEAD0026644C /* AppDelegate.swift in Sources */,
+				9B8B23F61E0AAD1B0044941B /* HRUMoodViewController.swift in Sources */,
 				9B971ED91E097E390080DDC6 /* EmojiLoadingTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
